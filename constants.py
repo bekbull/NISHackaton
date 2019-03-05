@@ -1,1 +1,2 @@
-toqen = '757598027:AAG04IpcgLTA_HKa_m5cnPBP5Ir6r9M-TYI'
+toqen = '748197784:AAGV7JnAXZXOdxsgw4PpMlGiiy_WJYtQkeA'
+password = 'qwert13'
