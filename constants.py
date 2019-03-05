@@ -1,2 +1,2 @@
-toqen = '748197784:AAGV7JnAXZXOdxsgw4PpMlGiiy_WJYtQkeA'
+toqen = 'your token here'
 password = 'qwert13'
