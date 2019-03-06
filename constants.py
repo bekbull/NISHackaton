@@ -1,2 +1,2 @@
 toqen = 'your token here'
-password = 'qwert13'
+password = 'qwerty13'

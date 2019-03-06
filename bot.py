@@ -6,15 +6,18 @@ import time
 from datetime import datetime
 import sql_queries as sql
 
+token = input("Enter your bot token: ")
+
 updater = Updater(token=constants.toqen)
 dispatcher = updater.dispatcher
+
 
 
 def startCommand(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text='Hey, it is Robobot C 1.1.')
 
 def textMessage(bot, update):
-    response = 'I copy your message, as you copy other answers at СОР: ' + update.message.text
+    response = 'I copy your message, as you copy answers at СОР: ' + update.message.text
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
 def individualreq(bot, update, args):
@@ -27,10 +30,10 @@ def individualreq(bot, update, args):
         command += c
     print(text,command)
     print(datetime.today().weekday())
-    if datetime.today().weekday() == 1:
+    if datetime.today().weekday() < 5:
         print('YESS')
         print(args[0])
-        res = sql.monday(args[0])
+        res = sql.timetable(args[0], datetime.today().weekday())
         print(res)
         for lesson in res[0]:
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
