@@ -18,8 +18,8 @@ def textMessage(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
 def individualreq(bot, update, args):
-    args = args.split
     args[-1] = args[-1].upper()
+    w = ''.join(args)
     text = update.message.text
     text = text[1:]
     command = ''
@@ -27,11 +27,9 @@ def individualreq(bot, update, args):
         if c == ' ':
             break
         command += c
-    print(command, text)
-    print(datetime.today().weekday() + 1)
+    print(text)
 
     if datetime.today().weekday() == 0:
-        print('YESS, It is Monday, man.')
         print(args[0])
         res = sql.monday(args[0])
         print(res)
@@ -39,47 +37,36 @@ def individualreq(bot, update, args):
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
 
     elif datetime.today().weekday() == 1:
-        print('YESS, It is Tuesday, man.')
-        print(args[0])
-        res = sql.tuesday(args[0])
+        res = sql.tuesday(w)
         print(res)
         for lesson in res[1]:
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
         #bot.send_message(chat_id=update.message.chat_id, tex='YESS, It is Tuesday, man.')
 
     elif datetime.today().weekday() == 2:
-        print('YESS, It is Wednesday, man.')
-        print(args[0])
-        res = sql.wednesday(args[0])
+        res = sql.wednesday(w)
         print(res)
         for lesson in res[0]:
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
 
     elif datetime.today().weekday() == 3:
-        print('YESS, It is Thursday, man.')
-        print(args[0])
-        res = sql.thursday(args[0])
+        res = sql.thursday(w)
         print(res)
         for lesson in res[0]:
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
 
     elif datetime.today().weekday() == 4:
-        print('YESS, It is Friday, man.')
-        print(args[0])
         res = sql.friday(args[0])
         print(res)
         for lesson in res[0]:
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
 
-    elif datetime.today().weekday() == 5:
-        bot.send_message(chat_id=update.message.chat_id, text="Weekend...")
-
-    elif datetime.today().weekday() == 6:
+    elif datetime.today().weekday() == 5 or datetime.today().weekday() == 6:
         bot.send_message(chat_id=update.message.chat_id, text="Weekend...")
     else:
         bot.send_message(chat_if=update.message.chat_id, text="Something wrong...")
 
-start_command_handler = CommandHandler('Click this Click.', startCommand)
+start_command_handler = CommandHandler(['start'], startCommand, pass_args=False)
 text_message_handler = MessageHandler(Filters.text, textMessage)
 
 dispatcher.add_handler(start_command_handler)
