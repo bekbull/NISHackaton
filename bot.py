@@ -41,7 +41,6 @@ def individualreq(bot, update, args):
         print(res)
         for lesson in res[1]:
             bot.send_message(chat_id=update.message.chat_id, text=lesson)
-        #bot.send_message(chat_id=update.message.chat_id, tex='YESS, It is Tuesday, man.')
 
     elif datetime.today().weekday() == 2:
         res = sql.wednesday(w)
